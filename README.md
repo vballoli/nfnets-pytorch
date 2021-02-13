@@ -8,6 +8,7 @@ Original code: https://github.com/deepmind/deepmind-research/tree/master/nfnets
 - [ ] NFNets 
 - [ ] NF-ResNets
 - [ ] Function to automatically replace Convolutions in any module with WSConv2d
+- [ ] Documentation
 
 # Cite
 
