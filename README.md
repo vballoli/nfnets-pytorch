@@ -3,14 +3,8 @@
 Paper: https://arxiv.org/abs/2102.06171.pdf
 Original code: https://github.com/deepmind/deepmind-research/tree/master/nfnets
 
-# TODO
-- [x] WSConv2d
-- [x] SGD - Adaptive Gradient Clipping
-- [x] Function to automatically replace Convolutions in any module with WSConv2d
-- [ ] NFNets 
-- [ ] NF-ResNets
-- [ ] Documentation
-
+# Installation
+`pip3 install git+https://github.com/vballoli/nfnets-pytorch`
 # Usage
 ## WSConv2d
 
@@ -52,7 +46,15 @@ model = resnet18()
 replace_conv(model)
 ```
 
-# Cite
+# TODO
+- [x] WSConv2d
+- [x] SGD - Adaptive Gradient Clipping
+- [x] Function to automatically replace Convolutions in any module with WSConv2d
+- [ ] NFNets 
+- [ ] NF-ResNets
+- [ ] Documentation
+
+# Cite Original Work
 
 To cite the original paper, use:
 ```
