@@ -5,6 +5,7 @@ Original code: https://github.com/deepmind/deepmind-research/tree/master/nfnets
 
 # TODO
 - [x] WSConv2d
+- [x] SGD - Adaptive Gradient Clipping
 - [ ] NFNets 
 - [ ] NF-ResNets
 - [ ] Function to automatically replace Convolutions in any module with WSConv2d
