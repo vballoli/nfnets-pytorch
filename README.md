@@ -46,13 +46,17 @@ model = resnet18()
 replace_conv(model)
 ```
 
+# Docs
+
+Find the docs at [readthedocs](https://nfnets-pytorch.readthedocs.io/en/latest/)
+
 # TODO
 - [x] WSConv2d
 - [x] SGD - Adaptive Gradient Clipping
 - [x] Function to automatically replace Convolutions in any module with WSConv2d
+- [x] Documentation
 - [ ] NFNets 
 - [ ] NF-ResNets
-- [ ] Documentation
 
 # Cite Original Work
 
