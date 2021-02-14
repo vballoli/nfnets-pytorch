@@ -19,6 +19,13 @@ NFNets-PyTorch is an implementation of the paper: "High-Performance Large-Scale 
 *********
 Install
 *********
+Stable release
+
+.. code-block:: console
+
+   pip3 install nfnets-pytorch
+
+Latest code
 
 .. code-block:: console
 

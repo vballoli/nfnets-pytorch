@@ -1,7 +1,15 @@
 # PyTorch implementation of Normalizer-Free Networks and SGD - Adaptive Gradient Clipping
+![Python Package](https://github.com/vballoli/nfnets-pytorch/workflows/Upload%20Python%20Package/badge.svg)
+![Docs](https://readthedocs.org/projects/nfnets-pytorch/badge/?version=latest
+)
 
 Paper: https://arxiv.org/abs/2102.06171.pdf
+
 Original code: https://github.com/deepmind/deepmind-research/tree/master/nfnets
+
+Do star this repository if it helps your work!
+
+> Note: See [this comment](https://github.com/vballoli/nfnets-pytorch/issues/1#issuecomment-778853439) for a generic implementation for any optimizer as a temporary reference for anyone who needs it.
 
 # Installation
 
