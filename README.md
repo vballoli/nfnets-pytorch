@@ -4,6 +4,13 @@ Paper: https://arxiv.org/abs/2102.06171.pdf
 Original code: https://github.com/deepmind/deepmind-research/tree/master/nfnets
 
 # Installation
+
+Install from PyPi:
+
+`pip3 install nfnets-pytorch`
+
+or install the latest code using:
+
 `pip3 install git+https://github.com/vballoli/nfnets-pytorch`
 # Usage
 ## WSConv2d
