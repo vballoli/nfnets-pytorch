@@ -1,0 +1,352 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>nfnets package &mdash; NFNets PyTorch 0.0.1 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script type="text/javascript" src="_static/jquery.js"></script>
+        <script type="text/javascript" src="_static/underscore.js"></script>
+        <script type="text/javascript" src="_static/doctools.js"></script>
+        <script type="text/javascript" src="_static/language_data.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "ignoreClass": "document", "processClass": "math|output_area"}})</script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="Welcome to NFNets PyTorch’s documentation!" href="index.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home"> NFNets PyTorch
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">API reference</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">nfnets package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-nfnets.base">nfnets.base module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#nfnets-sgd-agc-module">nfnets.sgd_agc module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-nfnets.utils">nfnets.utils module</a></li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">NFNets PyTorch</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>nfnets package</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/nfnets.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  
+<style>
+/* CSS overrides for sphinx_rtd_theme */
+
+/* 24px margin */
+.nbinput.nblast.container,
+.nboutput.nblast.container {
+    margin-bottom: 19px;  /* padding has already 5px */
+}
+
+/* ... except between code cells! */
+.nblast.container + .nbinput.container {
+    margin-top: -19px;
+}
+
+.admonition > p:before {
+    margin-right: 4px;  /* make room for the exclamation icon */
+}
+
+/* Fix math alignment, see https://github.com/rtfd/sphinx_rtd_theme/pull/686 */
+.math {
+    text-align: unset;
+}
+</style>
+<div class="section" id="nfnets-package">
+<h1>nfnets package<a class="headerlink" href="#nfnets-package" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="module-nfnets.base">
+<span id="nfnets-base-module"></span><h2>nfnets.base module<a class="headerlink" href="#module-nfnets.base" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="nfnets.base.WSConv2d">
+<em class="property">class </em><code class="sig-prename descclassname">nfnets.base.</code><code class="sig-name descname">WSConv2d</code><span class="sig-paren">(</span><em class="sig-param">in_channels</em>, <em class="sig-param">out_channels</em>, <em class="sig-param">kernel_size</em>, <em class="sig-param">stride=1</em>, <em class="sig-param">padding=0</em>, <em class="sig-param">dilation=1</em>, <em class="sig-param">groups=1</em>, <em class="sig-param">bias=True</em>, <em class="sig-param">padding_mode='zeros'</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/nfnets/base.html#WSConv2d"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#nfnets.base.WSConv2d" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">torch.nn.modules.conv.Conv2d</span></code></p>
+<p>Reference: <a class="reference external" href="https://github.com/deepmind/deepmind-research/blob/master/nfnets/base.py#L121">https://github.com/deepmind/deepmind-research/blob/master/nfnets/base.py#L121</a></p>
+<dl class="method">
+<dt id="nfnets.base.WSConv2d.forward">
+<code class="sig-name descname">forward</code><span class="sig-paren">(</span><em class="sig-param">input</em>, <em class="sig-param">eps=0.0001</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/nfnets/base.html#WSConv2d.forward"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#nfnets.base.WSConv2d.forward" title="Permalink to this definition">¶</a></dt>
+<dd><p>Defines the computation performed at every call.</p>
+<p>Should be overridden by all subclasses.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Although the recipe for forward pass needs to be defined within
+this function, one should call the <code class="xref py py-class docutils literal notranslate"><span class="pre">Module</span></code> instance afterwards
+instead of this since the former takes care of running the
+registered hooks while the latter silently ignores them.</p>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="nfnets.base.WSConv2d.standardize_weight">
+<code class="sig-name descname">standardize_weight</code><span class="sig-paren">(</span><em class="sig-param">eps</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/nfnets/base.html#WSConv2d.standardize_weight"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#nfnets.base.WSConv2d.standardize_weight" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="nfnets-sgd-agc-module">
+<h2>nfnets.sgd_agc module<a class="headerlink" href="#nfnets-sgd-agc-module" title="Permalink to this headline">¶</a></h2>
+<span class="target" id="module-nfnets.sgd_agc"></span><dl class="class">
+<dt id="nfnets.sgd_agc.SGD_AGC">
+<em class="property">class </em><code class="sig-prename descclassname">nfnets.sgd_agc.</code><code class="sig-name descname">SGD_AGC</code><span class="sig-paren">(</span><em class="sig-param">params</em>, <em class="sig-param">lr=&lt;required parameter&gt;</em>, <em class="sig-param">momentum=0</em>, <em class="sig-param">dampening=0</em>, <em class="sig-param">weight_decay=0</em>, <em class="sig-param">nesterov=False</em>, <em class="sig-param">clipping=0.01</em>, <em class="sig-param">eps=0.001</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/nfnets/sgd_agc.html#SGD_AGC"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#nfnets.sgd_agc.SGD_AGC" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">torch.optim.optimizer.Optimizer</span></code></p>
+<p>Implements stochastic gradient descent (optionally with momentum).</p>
+<p>Nesterov momentum is based on the formula from
+<a href="#id1"><span class="problematic" id="id2">`On the importance of initialization and momentum in deep learning`__</span></a>
+AGC from NFNets: <a class="reference external" href="https://arxiv.org/abs/2102.06171.pdf">https://arxiv.org/abs/2102.06171.pdf</a>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>params</strong> (<em>iterable</em>) – iterable of parameters to optimize or dicts defining
+parameter groups</p></li>
+<li><p><strong>lr</strong> (<em>float</em>) – learning rate</p></li>
+<li><p><strong>momentum</strong> (<em>float</em><em>, </em><em>optional</em>) – momentum factor (default: 0)</p></li>
+<li><p><strong>weight_decay</strong> (<em>float</em><em>, </em><em>optional</em>) – weight decay (L2 penalty) (default: 0)</p></li>
+<li><p><strong>dampening</strong> (<em>float</em><em>, </em><em>optional</em>) – dampening for momentum (default: 0)</p></li>
+<li><p><strong>nesterov</strong> (<em>bool</em><em>, </em><em>optional</em>) – enables Nesterov momentum (default: False)</p></li>
+<li><p><strong>dampening</strong> – dampening for momentum (default: 0.01)</p></li>
+<li><p><strong>eps</strong> (<em>float</em><em>, </em><em>optional</em>) – dampening for momentum (default: 1e-3)</p></li>
+</ul>
+</dd>
+</dl>
+<p class="rubric">Example</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">optimizer</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">optim</span><span class="o">.</span><span class="n">SGD_AGC</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">parameters</span><span class="p">(),</span> <span class="n">lr</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">momentum</span><span class="o">=</span><span class="mf">0.9</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">optimizer</span><span class="o">.</span><span class="n">zero_grad</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">loss_fn</span><span class="p">(</span><span class="n">model</span><span class="p">(</span><span class="nb">input</span><span class="p">),</span> <span class="n">target</span><span class="p">)</span><span class="o">.</span><span class="n">backward</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">optimizer</span><span class="o">.</span><span class="n">step</span><span class="p">()</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The implementation has been adapted from the PyTorch framework and the official
+NF-Nets paper.
+The implementation of SGD with Momentum/Nesterov subtly differs from
+Sutskever et. al. and implementations in some other frameworks.</p>
+<p>Considering the specific case of Momentum, the update can be written as</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{aligned}
+    v_{t+1} &amp; = \mu * v_{t} + g_{t+1}, \\
+    p_{t+1} &amp; = p_{t} - \text{lr} * v_{t+1},
+\end{aligned}\end{split}\]</div>
+<p>where <span class="math notranslate nohighlight">\(p\)</span>, <span class="math notranslate nohighlight">\(g\)</span>, <span class="math notranslate nohighlight">\(v\)</span> and <span class="math notranslate nohighlight">\(\mu\)</span> denote the
+parameters, gradient, velocity, and momentum respectively.</p>
+<p>This is in contrast to Sutskever et. al. and
+other frameworks which employ an update of the form</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{aligned}
+    v_{t+1} &amp; = \mu * v_{t} + \text{lr} * g_{t+1}, \\
+    p_{t+1} &amp; = p_{t} - v_{t+1}.
+\end{aligned}\end{split}\]</div>
+<p>The Nesterov version is analogously modified.</p>
+</div>
+<dl class="method">
+<dt id="nfnets.sgd_agc.SGD_AGC.step">
+<code class="sig-name descname">step</code><span class="sig-paren">(</span><em class="sig-param">closure=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/nfnets/sgd_agc.html#SGD_AGC.step"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#nfnets.sgd_agc.SGD_AGC.step" title="Permalink to this definition">¶</a></dt>
+<dd><p>Performs a single optimization step.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>closure</strong> (<em>callable</em><em>, </em><em>optional</em>) – A closure that reevaluates the model
+and returns the loss.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="function">
+<dt id="nfnets.sgd_agc.unitwise_norm">
+<code class="sig-prename descclassname">nfnets.sgd_agc.</code><code class="sig-name descname">unitwise_norm</code><span class="sig-paren">(</span><em class="sig-param">x: torch.Tensor</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/nfnets/sgd_agc.html#unitwise_norm"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#nfnets.sgd_agc.unitwise_norm" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="module-nfnets.utils">
+<span id="nfnets-utils-module"></span><h2>nfnets.utils module<a class="headerlink" href="#module-nfnets.utils" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="nfnets.utils.replace_conv">
+<code class="sig-prename descclassname">nfnets.utils.</code><code class="sig-name descname">replace_conv</code><span class="sig-paren">(</span><em class="sig-param">module: torch.nn.modules.module.Module</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/nfnets/utils.html#replace_conv"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#nfnets.utils.replace_conv" title="Permalink to this definition">¶</a></dt>
+<dd><p>Recursively replaces every convolution with WSConv2d.</p>
+<p>Usage: replace_conv(model) #(In-line replacement)
+:param module: target’s model whose convolutions must be replaced.
+:type module: nn.Module</p>
+</dd></dl>
+
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+      
+        <a href="index.html" class="btn btn-neutral float-left" title="Welcome to NFNets PyTorch’s documentation!" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2021, Vaibhav Balloli
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

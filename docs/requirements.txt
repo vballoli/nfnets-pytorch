@@ -1,0 +1,8 @@
+sphinx
+sphinx_rtd_theme
+Pygments>=2.6.1
+ipykernel
+nbsphinx
+recommonmark
+torch
+torchvision
