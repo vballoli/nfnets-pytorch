@@ -27,6 +27,17 @@ w_conv = WSConv2d(3,6,3)
 ## SGD - Adaptive Gradient Clipping
 
 Similarly, use `SGD_AGC` like `torch.optim.SGD`
+```python
+import torch
+from torch import nn, optim
+from nfnets import WSConv2d, SGD_AGC
+
+conv = nn.Conv2d(3,6,3)
+w_conv = WSConv2d(3,6,3)
+
+optim = optim.SGD(conv.parameters(), 1e-3)
+optim_agc = SGD_AGC(conv.parameters(), 1e-3)
+```
 
 ## Using it within any PyTorch model
 
