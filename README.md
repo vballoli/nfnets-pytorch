@@ -70,6 +70,7 @@ Find the docs at [readthedocs](https://nfnets-pytorch.readthedocs.io/en/latest/)
 - [x] SGD - Adaptive Gradient Clipping
 - [x] Function to automatically replace Convolutions in any module with WSConv2d
 - [x] Documentation
+- [ ] Generic AGC wrapper.(See [this comment](https://github.com/vballoli/nfnets-pytorch/issues/1#issuecomment-778853439) for a reference implementation)
 - [ ] NFNets 
 - [ ] NF-ResNets
 
