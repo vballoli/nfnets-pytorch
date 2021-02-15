@@ -53,5 +53,5 @@ class AGC(optim.Optimizer):
                                           torch.tensor(1e-6).to(grad_norm.device)))
                 p.grad.data.copy_(torch.where(trigger, clipped_grad, p.grad))
 
-        self.optim.step(closure)
+        return self.optim.step(closure)
         
