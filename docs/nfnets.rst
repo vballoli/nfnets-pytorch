@@ -20,6 +20,14 @@ nfnets.sgd_agc module
    :undoc-members:
    :show-inheritance:
 
+nfnets.agc module
+--------------------
+
+.. automodule:: nfnets.agc
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
 nfnets.utils module
 --------------------
 

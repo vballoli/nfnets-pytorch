@@ -2,22 +2,7 @@ import torch
 from torch.optim.optimizer import Optimizer, required
 from torch import optim, nn
 
-
-def unitwise_norm(x: torch.Tensor):
-    if x.ndim <= 1:
-        dim = 0
-        keepdim = False
-    elif x.ndim in [2, 3]:
-        dim = 0
-        keepdim = True
-    elif x.ndim == 4:
-        dim = [1, 2, 3]
-        keepdim = True
-    else:
-        raise ValueError('Wrong input dimensions')
-
-    return torch.sum(x**2, dim=dim, keepdim=keepdim) ** 0.5
-
+from nfnets.utils import unitwise_norm
 
 class SGD_AGC(Optimizer):
     r"""Implements stochastic gradient descent (optionally with momentum).
@@ -35,7 +20,8 @@ class SGD_AGC(Optimizer):
         dampening (float, optional): dampening for momentum (default: 0)
         nesterov (bool, optional): enables Nesterov momentum (default: False)
         dampening (float, optional): dampening for momentum (default: 0.01)
-        eps (float, optional): dampening for momentum (default: 1e-3)
+        clipping (float, optional): clipping value (default: 1e-3)
+        eps (float, optional): eps (default: 1e-3)
 
     Example:
         >>> optimizer = torch.optim.SGD_AGC(model.parameters(), lr=0.1, momentum=0.9)
