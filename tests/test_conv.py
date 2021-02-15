@@ -1,3 +1,5 @@
+import torch
+
 from nfnets import WSConv2d
 
 def test_wsconv2d():
