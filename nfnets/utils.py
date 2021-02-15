@@ -16,5 +16,9 @@ def replace_conv(module: nn.Module):
         if type(mod) == torch.nn.Conv2d:
             setattr(module, name, WSConv2d(target_mod.in_channels, target_mod.out_channels, target_mod.kernel_size,
                                            target_mod.stride, target_mod.padding, target_mod.dilation, target_mod.groups, target_mod.bias))
-    for n, ch in module.named_children():
-        replace_conv(ch, n)
+        
+        if type(mod) == torch.nn.BatchNorm2d:
+            setattr(module, name, torch.nn.Identity())
+
+    for name, mod in module.named_children():
+        replace_conv(mod)

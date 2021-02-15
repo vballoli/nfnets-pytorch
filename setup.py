@@ -3,7 +3,7 @@ from setuptools import setup, find_packages
 setup(
   name = 'nfnets-pytorch',
   packages = find_packages(),
-  version = '0.0.1',
+  version = '0.0.2',
   license='MIT',
   description = 'NFNets, PyTorch',
   author = 'Vaibhav Balloli',
