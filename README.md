@@ -48,6 +48,20 @@ optim = optim.SGD(conv.parameters(), 1e-3)
 optim_agc = SGD_AGC(conv.parameters(), 1e-3)
 ```
 
+## Generic AGC
+```python
+import torch
+from torch import nn, optim
+from nfnets import WSConv2d
+from nfnets.agc import AGC # Needs testing
+
+conv = nn.Conv2d(3,6,3)
+w_conv = WSConv2d(3,6,3)
+
+optim = optim.SGD(conv.parameters(), 1e-3)
+optim_agc = AGC(conv.parameters(), optim) # Needs testing
+```
+
 ## Using it within any PyTorch model
 
 ```python
@@ -70,7 +84,7 @@ Find the docs at [readthedocs](https://nfnets-pytorch.readthedocs.io/en/latest/)
 - [x] SGD - Adaptive Gradient Clipping
 - [x] Function to automatically replace Convolutions in any module with WSConv2d
 - [x] Documentation
-- [ ] Generic AGC wrapper.(See [this comment](https://github.com/vballoli/nfnets-pytorch/issues/1#issuecomment-778853439) for a reference implementation)
+- [x] Generic AGC wrapper.(See [this comment](https://github.com/vballoli/nfnets-pytorch/issues/1#issuecomment-778853439) for a reference implementation) (Needs testing for now)
 - [ ] NFNets 
 - [ ] NF-ResNets
 
