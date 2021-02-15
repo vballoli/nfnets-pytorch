@@ -19,7 +19,8 @@ class WSConv2d(nn.Conv2d):
         var, mean = torch.var_mean(self.weight, dim=(1, 2, 3), keepdims=True)
         fan_in = torch.prod(torch.tensor(self.weight.shape[0:]))
 
-        scale = torch.rsqrt(torch.max(var * fan_in, torch.tensor(eps))) * self.gain.view_as(var)
+        scale = torch.rsqrt(torch.max(
+            var * fan_in, torch.tensor(eps).to(var.device))) * self.gain.view_as(var).to(var.device)
         shift = mean * scale
         return self.weight * scale - shift
 
