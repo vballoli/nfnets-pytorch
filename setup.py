@@ -1,11 +1,18 @@
 from setuptools import setup, find_packages
 
+from os import path
+curdir = path.abspath(path.dirname(__file__))
+with open(path.join(curdir, 'README.md'), encoding='utf-8') as f:
+    long_description = f.read()
+
 setup(
   name = 'nfnets-pytorch',
   packages = find_packages(),
-  version = '0.0.4',
+  version = '0.0.5',
   license='MIT',
   description = 'NFNets, PyTorch',
+  long_description=long_description,
+  long_description_content_type='text/markdown',
   author = 'Vaibhav Balloli',
   author_email = 'balloli.vb@gmail.com',
   url = 'https://github.com/vballoli/nfnets-pytorch',
