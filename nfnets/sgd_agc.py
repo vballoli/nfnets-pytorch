@@ -101,11 +101,11 @@ class SGD_AGC(Optimizer):
         for group in self.param_groups:
             for p in group['params']:
                 param_norm = torch.max(unitwise_norm(
-                    p), torch.tensor(group['eps']).to(p.device))
-                grad_norm = unitwise_norm(p.grad)
+                    p.detach()), torch.tensor(group['eps']).to(p.device))
+                grad_norm = unitwise_norm(p.grad.detach())
                 max_norm = param_norm * group['clipping']
 
-                trigger = grad_norm > max_norm
+                trigger = grad_norm < max_norm
 
                 clipped_grad = p.grad * \
                     (max_norm / torch.max(grad_norm,
