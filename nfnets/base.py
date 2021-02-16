@@ -1,5 +1,6 @@
 import torch
 from torch import nn
+from torch.functional import F
 from torch.nn.common_types import _size_1_t, _size_2_t, _size_3_t
 from torch import Tensor
 
@@ -158,8 +159,8 @@ class WSConv2d(nn.Conv2d):
         return self.weight * scale - shift
 
     def forward(self, input, eps=1e-4):
-        self.weight.data.copy_(self.standardize_weight(eps))
-        return super().forward(input)
+        weight = self.standardize_weight(eps)
+        return F.conv2d(input, weight, self.bias, self.stride, self.padding, self.dilation, self.groups)
 
 
 class WSConvTranspose2d(nn.ConvTranspose2d):
@@ -321,5 +322,5 @@ class WSConvTranspose2d(nn.ConvTranspose2d):
         return self.weight * scale - shift
 
     def forward(self, input: Tensor, output_size: Optional[List[int]] = None, eps: float=1e-4) -> Tensor:
-        self.weight.data.copy_(self.standardize_weight(eps))
-        return super().forward(input, output_size)
+        weight = self.standardize_weight()
+        return F.conv_transpose2d(input, self.weight, self.bias, self.stride, self.padding, self.output_padding, self.groups, self.dilation)
