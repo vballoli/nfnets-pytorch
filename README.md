@@ -23,7 +23,7 @@ or install the latest code using:
 # Usage
 ## WSConv2d
 
-Use `WSConv2d` like any other `torch.nn.Conv2d`.
+Use `WSConv2d` and `WSConvTranspose2d` like any other `torch.nn.Conv2d` or `torch.nn.ConvTranspose2d` modules.
 
 ```python
 import torch
@@ -32,6 +32,9 @@ from nfnets import WSConv2d
 
 conv = nn.Conv2d(3,6,3)
 w_conv = WSConv2d(3,6,3)
+
+conv_t = nn.ConvTranspose2d(3,6,3)
+w_conv_t = WSConvTranspose2d(3,6,3)
 ```
 ## SGD - Adaptive Gradient Clipping
 
