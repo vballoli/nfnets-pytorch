@@ -60,6 +60,8 @@ class AGC(optim.Optimizer):
 
         for group in self.param_groups:
             for p in group['params']:
+                if p.grad is None:
+                    continue
                 param_norm = torch.max(unitwise_norm(
                     p.detach()), torch.tensor(group['eps']).to(p.device))
                 grad_norm = unitwise_norm(p.grad.detach())
