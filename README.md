@@ -36,10 +36,32 @@ w_conv = WSConv2d(3,6,3)
 conv_t = nn.ConvTranspose2d(3,6,3)
 w_conv_t = WSConvTranspose2d(3,6,3)
 ```
+
+## Generic AGC (recommended)
+```python
+import torch
+from torch import nn, optim
+from torchvision.models import resnet18
+
+from nfnets import WSConv2d
+from nfnets.agc import AGC # Needs testing
+
+conv = nn.Conv2d(3,6,3)
+w_conv = WSConv2d(3,6,3)
+
+optim = optim.SGD(conv.parameters(), 1e-3)
+optim_agc = AGC(conv.parameters(), optim) # Needs testing
+
+# Ignore fc of a model while applying AGC.
+model = resnet18()
+optim = torch.optim.SGD(model.parameters(), 1e-3)
+optim = AGC(model.parameters(), optim, model=model, ignore_agc=['fc'])
+```
 ## SGD - Adaptive Gradient Clipping
 
 Similarly, use `SGD_AGC` like `torch.optim.SGD`
 ```python
+# The generic AGC is preferable since the paper recommends not applying AGC to the last fc layer.
 import torch
 from torch import nn, optim
 from nfnets import WSConv2d, SGD_AGC
@@ -49,20 +71,6 @@ w_conv = WSConv2d(3,6,3)
 
 optim = optim.SGD(conv.parameters(), 1e-3)
 optim_agc = SGD_AGC(conv.parameters(), 1e-3)
-```
-
-## Generic AGC
-```python
-import torch
-from torch import nn, optim
-from nfnets import WSConv2d
-from nfnets.agc import AGC # Needs testing
-
-conv = nn.Conv2d(3,6,3)
-w_conv = WSConv2d(3,6,3)
-
-optim = optim.SGD(conv.parameters(), 1e-3)
-optim_agc = AGC(conv.parameters(), optim) # Needs testing
 ```
 
 ## Using it within any PyTorch model
