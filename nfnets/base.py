@@ -147,7 +147,7 @@ class WSConv2d(nn.Conv2d):
                          dilation=dilation, groups=groups, bias=bias, padding_mode=padding_mode)
 
         nn.init.kaiming_normal_(self.weight)
-        self.gain = torch.ones(self.weight.size(0), requires_grad=True)
+        self.gain = nn.Parameter(torch.ones(self.weight.size(0), requires_grad=True))
 
     def standardize_weight(self, eps):
         var, mean = torch.var_mean(self.weight, dim=(1, 2, 3), keepdims=True)
@@ -310,7 +310,7 @@ class WSConvTranspose2d(nn.ConvTranspose2d):
                          output_padding=output_padding, groups=groups, bias=bias, dilation=dilation, padding_mode=padding_mode)
 
         nn.init.kaiming_normal_(self.weight)
-        self.gain = torch.ones(self.weight.size(0), requires_grad=True)
+        self.gain = nn.Parameter(torch.ones(self.weight.size(0), requires_grad=True))
 
     def standardize_weight(self, eps):
         var, mean = torch.var_mean(self.weight, dim=(1, 2, 3), keepdims=True)
