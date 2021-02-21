@@ -7,7 +7,7 @@ Paper: https://arxiv.org/abs/2102.06171.pdf
 
 Original code: https://github.com/deepmind/deepmind-research/tree/master/nfnets
 
-Do star this repository if it helps your work!
+Do star this repository if it helps your work, and [don't forget to cite](https://github.com/vballoli/nfnets-pytorch#cite-this-repository) if you use this code in your research!
 
 > Note: See [this comment](https://github.com/vballoli/nfnets-pytorch/issues/1#issuecomment-778853439) for a generic implementation for any optimizer as a temporary reference for anyone who needs it.
 
@@ -107,6 +107,18 @@ To cite the original paper, use:
   title={High-Performance Large-Scale Image Recognition Without Normalization},
   journal={arXiv preprint arXiv:},
   year={2021}
+}
+```
+
+# Cite this repository
+
+To cite this repository, use:
+```
+@misc{nfnets-pytorch,
+  author = {Vaibhav Balloli},
+  title = {A PyTorch implementation of NFNets and Adaptive Gradient Clipping},
+  year = {2020},
+  howpublished = {\url{https://github.com/vballoli/nfnets-pytorch}}
 }
 ```
 
