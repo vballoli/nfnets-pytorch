@@ -9,8 +9,6 @@ Original code: https://github.com/deepmind/deepmind-research/tree/master/nfnets
 
 Do star this repository if it helps your work, and [don't forget to cite](https://github.com/vballoli/nfnets-pytorch#cite-this-repository) if you use this code in your research!
 
-> Note: See [this comment](https://github.com/vballoli/nfnets-pytorch/issues/1#issuecomment-778853439) for a generic implementation for any optimizer as a temporary reference for anyone who needs it.
-
 # Installation
 
 Install from PyPi:
