@@ -112,10 +112,10 @@ To cite the original paper, use:
 
 To cite this repository, use:
 ```
-@misc{nfnets-pytorch,
+@misc{nfnets2021pytorch,
   author = {Vaibhav Balloli},
   title = {A PyTorch implementation of NFNets and Adaptive Gradient Clipping},
-  year = {2020},
+  year = {2021},
   howpublished = {\url{https://github.com/vballoli/nfnets-pytorch}}
 }
 ```
