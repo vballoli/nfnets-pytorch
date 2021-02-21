@@ -1,7 +1,6 @@
 import torch
 from torch import nn
 from torch.functional import F
-from torch.nn.common_types import _size_1_t, _size_2_t, _size_3_t
 from torch import Tensor
 
 from typing import Optional, List, Tuple
@@ -106,7 +105,8 @@ class WSConv1d(nn.Conv1d):
                          dilation=dilation, groups=groups, bias=bias, padding_mode=padding_mode)
 
         nn.init.kaiming_normal_(self.weight)
-        self.gain = nn.Parameter(torch.ones(self.weight.size()[0], requires_grad=True))
+        self.gain = nn.Parameter(torch.ones(
+            self.weight.size()[0], requires_grad=True))
 
     def standardize_weight(self, eps):
         var, mean = torch.var_mean(self.weight, dim=(1, 2), keepdims=True)
@@ -262,7 +262,8 @@ class WSConv2d(nn.Conv2d):
                          dilation=dilation, groups=groups, bias=bias, padding_mode=padding_mode)
 
         nn.init.kaiming_normal_(self.weight)
-        self.gain = nn.Parameter(torch.ones(self.weight.size(0), requires_grad=True))
+        self.gain = nn.Parameter(torch.ones(
+            self.weight.size(0), requires_grad=True))
 
     def standardize_weight(self, eps):
         var, mean = torch.var_mean(self.weight, dim=(1, 2, 3), keepdims=True)
@@ -413,10 +414,10 @@ class WSConvTranspose2d(nn.ConvTranspose2d):
     def __init__(self,
                  in_channels: int,
                  out_channels: int,
-                 kernel_size: _size_2_t,
-                 stride: _size_2_t = 1,
-                 padding: _size_2_t = 0,
-                 output_padding: _size_2_t = 0,
+                 kernel_size,
+                 stride=1,
+                 padding=0,
+                 output_padding=0,
                  groups: int = 1,
                  bias: bool = True,
                  dilation: int = 1,
@@ -425,7 +426,8 @@ class WSConvTranspose2d(nn.ConvTranspose2d):
                          output_padding=output_padding, groups=groups, bias=bias, dilation=dilation, padding_mode=padding_mode)
 
         nn.init.kaiming_normal_(self.weight)
-        self.gain = nn.Parameter(torch.ones(self.weight.size(0), requires_grad=True))
+        self.gain = nn.Parameter(torch.ones(
+            self.weight.size(0), requires_grad=True))
 
     def standardize_weight(self, eps):
         var, mean = torch.var_mean(self.weight, dim=(1, 2, 3), keepdims=True)
@@ -436,6 +438,45 @@ class WSConvTranspose2d(nn.ConvTranspose2d):
         shift = mean * scale
         return self.weight * scale - shift
 
-    def forward(self, input: Tensor, output_size: Optional[List[int]] = None, eps: float=1e-4) -> Tensor:
-        weight = self.standardize_weight()
+    def forward(self, input: Tensor, output_size: Optional[List[int]] = None, eps: float = 1e-4) -> Tensor:
+        weight = self.standardize_weight(eps)
         return F.conv_transpose2d(input, self.weight, self.bias, self.stride, self.padding, self.output_padding, self.groups, self.dilation)
+
+
+class ScaledStdConv2d(nn.Conv2d):
+    """Conv2d layer with Scaled Weight Standardization.
+    Paper: `Characterizing signal propagation to close the performance gap in unnormalized ResNets` -
+        https://arxiv.org/abs/2101.08692
+
+    Adapted from timm: https://github.com/rwightman/pytorch-image-models/blob/4ea593196414684d2074cbb81d762f3847738484/timm/models/layers/std_conv.py
+    """
+
+    def __init__(self, in_channels, out_channels, kernel_size, stride=1, padding=None, dilation=1, groups=1,
+                 bias=True, gain=True, gamma=1.0, eps=1e-5, use_layernorm=False):
+        if padding is None:
+            padding = get_padding(kernel_size, stride, dilation)
+        super().__init__(
+            in_channels, out_channels, kernel_size, stride=stride,
+            padding=padding, dilation=dilation, groups=groups, bias=bias)
+        self.gain = nn.Parameter(torch.ones(
+            self.out_channels, 1, 1, 1)) if gain else None
+        # gamma * 1 / sqrt(fan-in)
+        self.scale = gamma * self.weight[0].numel() ** -0.5
+        self.eps = eps ** 2 if use_layernorm else eps
+        # experimental, slightly faster/less GPU memory use
+        self.use_layernorm = use_layernorm
+
+    def get_weight(self):
+        if self.use_layernorm:
+            weight = self.scale * \
+                F.layer_norm(self.weight, self.weight.shape[1:], eps=self.eps)
+        else:
+            std, mean = torch.std_mean(
+                self.weight, dim=[1, 2, 3], keepdim=True, unbiased=False)
+            weight = self.scale * (self.weight - mean) / (std + self.eps)
+        if self.gain is not None:
+            weight = weight * self.gain
+        return weight
+
+    def forward(self, x):
+        return F.conv2d(x, self.get_weight(), self.bias, self.stride, self.padding, self.dilation, self.groups)

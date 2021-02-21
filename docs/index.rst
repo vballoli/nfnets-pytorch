@@ -41,11 +41,13 @@ Sample usage
    from torch import nn
    from torchvision.models import resnet18
 
-   from nfnets import replace_conv, SGD_AGC
+   from nfnets import replace_conv, AGC, WSConv2d, ScaledStdConv2d
 
    model = resnet18()
-   replace_conv(model)
-   optim = SGD_AGC(model.parameters(), 1e-3)
+   replace_conv(model, ScaledStdConv2d) # Original repo's implementation
+   replace_conv(model, ScaledStdConv2d) # timm
+   optim = torch.optim.SGD(model.parameters(), 1e-3) # Or any of your favourite optimizer
+   optim = AGC(model.parameters(), optim)
 
 .. toctree::
    :maxdepth: 2

@@ -23,12 +23,12 @@ or install the latest code using:
 # Usage
 ## WSConv2d
 
-Use `WSConv2d` and `WSConvTranspose2d` like any other `torch.nn.Conv2d` or `torch.nn.ConvTranspose2d` modules.
+Use `WSConv1d, WSConv2d, ScaledStdConv2d(timm)` and `WSConvTranspose2d` like any other `torch.nn.Conv2d` or `torch.nn.ConvTranspose2d` modules.
 
 ```python
 import torch
 from torch import nn
-from nfnets import WSConv2d
+from nfnets import WSConv2d, WSConvTranspose2d, ScaledStdConv2d
 
 conv = nn.Conv2d(3,6,3)
 w_conv = WSConv2d(3,6,3)
@@ -75,30 +75,28 @@ optim_agc = SGD_AGC(conv.parameters(), 1e-3)
 
 ## Using it within any PyTorch model
 
+`replace_conv` replaces the convolution in your model with the convolution class and replaces the batchnorm with identity. While the identity is not ideal, it shouldn't cause a major difference in the latency. 
 ```python
 import torch
 from torch import nn
 from torchvision.models import resnet18
 
-from nfnets import replace_conv
+from nfnets import replace_conv, WSConv2d, ScaledStdConv2d
 
 model = resnet18()
-replace_conv(model)
+replace_conv(model, WSConv2d) # This repo's original implementation
+replace_conv(model, ScaledStdConv2d) # From timm
+
+"""
+class YourCustomClass(nn.Conv2d):
+  ...
+replace_conv(model, YourCustomClass)
+"""
 ```
 
 # Docs
 
 Find the docs at [readthedocs](https://nfnets-pytorch.readthedocs.io/en/latest/)
-
-# TODO
-- [x] WSConv2d
-- [x] SGD - Adaptive Gradient Clipping
-- [x] Function to automatically replace Convolutions in any module with WSConv2d
-- [x] Documentation
-- [x] Generic AGC wrapper.(See [this comment](https://github.com/vballoli/nfnets-pytorch/issues/1#issuecomment-778853439) for a reference implementation) (Needs testing for now)
-- [x] WSConvTranspose2d
-- [ ] NFNets 
-- [ ] NF-ResNets
 
 # Cite Original Work
 
@@ -111,3 +109,12 @@ To cite the original paper, use:
   year={2021}
 }
 ```
+
+# TODO
+- [x] WSConv2d
+- [x] SGD - Adaptive Gradient Clipping
+- [x] Function to automatically replace Convolutions in any module with WSConv2d
+- [x] Documentation
+- [x] Generic AGC wrapper.(See [this comment](https://github.com/vballoli/nfnets-pytorch/issues/1#issuecomment-778853439) for a reference implementation) (Needs testing for now)
+- [x] WSConvTranspose2d
+- [x] WSConv1d(Thanks to [@shi27feng](https://github.com/shi27feng))
