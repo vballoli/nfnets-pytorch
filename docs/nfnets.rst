@@ -35,3 +35,11 @@ nfnets.utils module
    :members:
    :undoc-members:
    :show-inheritance:
+
+nfnets.models.resnet module
+--------------------
+
+.. automodule:: nfnets.models.resnet
+   :members:
+   :undoc-members:
+   :show-inheritance:
