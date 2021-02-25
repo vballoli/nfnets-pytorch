@@ -109,7 +109,8 @@ class WSConv1d(nn.Conv1d):
             self.weight.size()[0], requires_grad=True))
 
     def standardize_weight(self, eps):
-        var, mean = torch.var_mean(self.weight, dim=(1, 2), keepdims=True)
+        mean = torch.var_mean(self.weight, dim=(1, 2), keepdims=True)
+        var = torch.std(self.weight, dim=(1, 2), keepdims=True, unbiased=False) ** 2
         fan_in = torch.prod(torch.tensor(self.weight.shape))
 
         scale = torch.rsqrt(torch.max(
@@ -266,7 +267,8 @@ class WSConv2d(nn.Conv2d):
             self.weight.size(0), requires_grad=True))
 
     def standardize_weight(self, eps):
-        var, mean = torch.var_mean(self.weight, dim=(1, 2, 3), keepdims=True)
+        mean = torch.mean(self.weight, dim=(1, 2, 3), keepdims=True)
+        var = torch.std(self.weight, dim=(1, 2, 3), keepdims=True) ** 2
         fan_in = torch.prod(torch.tensor(self.weight.shape[0:]))
 
         scale = torch.rsqrt(torch.max(
@@ -430,7 +432,8 @@ class WSConvTranspose2d(nn.ConvTranspose2d):
             self.weight.size(0), requires_grad=True))
 
     def standardize_weight(self, eps):
-        var, mean = torch.var_mean(self.weight, dim=(1, 2, 3), keepdims=True)
+        mean = torch.mean(self.weight, dim=(1, 2, 3), keepdims=True)
+        var = torch.std(self.weight, dim=(1, 2, 3), keepdims=True) ** 2
         fan_in = torch.prod(torch.tensor(self.weight.shape[0:]))
 
         scale = torch.rsqrt(torch.max(
@@ -451,10 +454,8 @@ class ScaledStdConv2d(nn.Conv2d):
     Adapted from timm: https://github.com/rwightman/pytorch-image-models/blob/4ea593196414684d2074cbb81d762f3847738484/timm/models/layers/std_conv.py
     """
 
-    def __init__(self, in_channels, out_channels, kernel_size, stride=1, padding=None, dilation=1, groups=1,
+    def __init__(self, in_channels, out_channels, kernel_size, stride=1, padding=0, dilation=1, groups=1,
                  bias=True, gain=True, gamma=1.0, eps=1e-5, use_layernorm=False):
-        if padding is None:
-            padding = get_padding(kernel_size, stride, dilation)
         super().__init__(
             in_channels, out_channels, kernel_size, stride=stride,
             padding=padding, dilation=dilation, groups=groups, bias=bias)
@@ -471,7 +472,9 @@ class ScaledStdConv2d(nn.Conv2d):
             weight = self.scale * \
                 F.layer_norm(self.weight, self.weight.shape[1:], eps=self.eps)
         else:
-            std, mean = torch.std_mean(
+            mean = torch.mean(
+                self.weight, dim=[1, 2, 3], keepdim=True)
+            std = torch.std(
                 self.weight, dim=[1, 2, 3], keepdim=True, unbiased=False)
             weight = self.scale * (self.weight - mean) / (std + self.eps)
         if self.gain is not None:
