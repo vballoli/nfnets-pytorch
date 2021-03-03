@@ -109,7 +109,7 @@ class WSConv1d(nn.Conv1d):
             self.weight.size()[0], requires_grad=True))
 
     def standardize_weight(self, eps):
-        mean = torch.var_mean(self.weight, dim=(1, 2), keepdims=True)
+        mean = torch.mean(self.weight, dim=(1, 2), keepdims=True)
         var = torch.std(self.weight, dim=(1, 2), keepdims=True, unbiased=False) ** 2
         fan_in = torch.prod(torch.tensor(self.weight.shape))
 
