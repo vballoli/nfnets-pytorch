@@ -41,7 +41,7 @@ class AGC(optim.Optimizer):
                 if module_name not in names:
                     raise ModuleNotFoundError(
                         "Module name {} not found in the model".format(module_name))
-            parameters = [{"params": module.parameters()} for name,
+            params = [{"params": module.parameters()} for name,
                           module in model.named_modules() if name not in ignore_agc]
 
         super(AGC, self).__init__(params, defaults)
