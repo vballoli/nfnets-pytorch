@@ -104,7 +104,6 @@ class AGC(optim.Optimizer):
         for group in self.agc_params:
             for p in group['params']:
                 if p.grad is not None:
-                    print("Zeroing")
                     if set_to_none:
                         p.grad = None
                     else:
