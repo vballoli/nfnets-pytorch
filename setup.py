@@ -8,7 +8,7 @@ with open(path.join(curdir, 'README.md'), encoding='utf-8') as f:
 setup(
   name = 'nfnets-pytorch',
   packages = find_packages(),
-  version = '0.0.8',
+  version = '0.0.9',
   license='MIT',
   description = 'NFNets, PyTorch',
   long_description=long_description,

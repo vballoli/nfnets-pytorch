@@ -68,7 +68,7 @@ class AGC(optim.Optimizer):
                 grad_norm = unitwise_norm(p.grad.detach())
                 max_norm = param_norm * group['clipping']
 
-                trigger = grad_norm < max_norm
+                trigger = grad_norm > max_norm
 
                 clipped_grad = p.grad * \
                     (max_norm / torch.max(grad_norm,
