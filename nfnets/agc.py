@@ -82,7 +82,7 @@ class AGC(optim.Optimizer):
                 clipped_grad = p.grad * \
                     (max_norm / torch.max(grad_norm,
                                           torch.tensor(1e-6).to(grad_norm.device)))
-                p.grad.data.copy_(torch.where(trigger, clipped_grad, p.grad))
+                p.grad.detach().data.copy_(torch.where(trigger, clipped_grad, p.grad))
 
         return self.optim.step(closure)
 

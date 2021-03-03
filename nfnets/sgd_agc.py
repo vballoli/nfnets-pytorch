@@ -112,7 +112,7 @@ class SGD_AGC(Optimizer):
                 clipped_grad = p.grad * \
                     (max_norm / torch.max(grad_norm,
                                           torch.tensor(1e-6).to(grad_norm.device)))
-                p.grad.data.copy_(torch.where(trigger, clipped_grad, p.grad))
+                p.grad.detach().copy_(torch.where(trigger, clipped_grad, p.grad))
 
         for group in self.param_groups:
             weight_decay = group['weight_decay']
