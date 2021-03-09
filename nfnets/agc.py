@@ -45,8 +45,7 @@ class AGC(optim.Optimizer):
                           module in model.named_modules() if name not in ignore_agc]
         
         else:
-            params = [{"params": list(module.parameters())} for name,
-                          module in model.named_modules()]
+            params = [{"params": params}]
 
         self.agc_params = params
         self.eps = eps
