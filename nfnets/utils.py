@@ -22,7 +22,7 @@ def replace_conv(module: nn.Module, conv_class=WSConv2d):
             setattr(module, name, torch.nn.Identity())
 
     for name, mod in module.named_children():
-        replace_conv(mod)
+        replace_conv(mod, conv_class)
 
 def unitwise_norm(x: torch.Tensor):
     if x.ndim <= 1:
