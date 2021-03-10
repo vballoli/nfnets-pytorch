@@ -9,6 +9,8 @@ Original code: https://github.com/deepmind/deepmind-research/tree/master/nfnets
 
 Do star this repository if it helps your work, and [don't forget to cite](https://github.com/vballoli/nfnets-pytorch#cite-this-repository) if you use this code in your research!
 
+> Disclaimer: This technique only works with large datasets(as mentioned in the paper).
+
 # Installation
 
 Install from PyPi:
