@@ -252,7 +252,7 @@ def nf_resnet34(pretrained: bool = False, base_conv: nn.Conv2d = ScaledStdConv2d
         pretrained (bool): If True, returns a model pre-trained on ImageNet
 
     """
-    return _nf_resnet('resnet34', BasicBlock, [3, 4, 6, 3], pretrained, base_conv=base_conv
+    return _nf_resnet('resnet34', BasicBlock, [3, 4, 6, 3], pretrained, base_conv=base_conv,
                       ** kwargs)
 
 
@@ -264,7 +264,7 @@ def nf_resnet50(pretrained: bool = False, base_conv: nn.Conv2d = ScaledStdConv2d
         pretrained (bool): If True, returns a model pre-trained on ImageNet
 
     """
-    return _nf_resnet('resnet50', Bottleneck, [3, 4, 6, 3], pretrained, base_conv=base_conv
+    return _nf_resnet('resnet50', Bottleneck, [3, 4, 6, 3], pretrained, base_conv=base_conv,
                       ** kwargs)
 
 
@@ -276,7 +276,7 @@ def nf_resnet101(pretrained: bool = False, base_conv: nn.Conv2d = ScaledStdConv2
         pretrained (bool): If True, returns a model pre-trained on ImageNet
 
     """
-    return _nf_resnet('resnet101', Bottleneck, [3, 4, 23, 3], pretrained, base_conv=base_conv
+    return _nf_resnet('resnet101', Bottleneck, [3, 4, 23, 3], pretrained, base_conv=base_conv,
                       ** kwargs)
 
 
@@ -288,7 +288,7 @@ def nf_resnet152(pretrained: bool = False, base_conv: nn.Conv2d = ScaledStdConv2
         pretrained (bool): If True, returns a model pre-trained on ImageNet
 
     """
-    return _nf_resnet('resnet152', Bottleneck, [3, 8, 36, 3], pretrained, base_conv=base_conv
+    return _nf_resnet('resnet152', Bottleneck, [3, 8, 36, 3], pretrained, base_conv=base_conv,
                       ** kwargs)
 
 
