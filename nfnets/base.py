@@ -443,7 +443,7 @@ class WSConvTranspose2d(nn.ConvTranspose2d):
 
     def forward(self, input: Tensor, output_size: Optional[List[int]] = None, eps: float = 1e-4) -> Tensor:
         weight = self.standardize_weight(eps)
-        return F.conv_transpose2d(input, self.weight, self.bias, self.stride, self.padding, self.output_padding, self.groups, self.dilation)
+        return F.conv_transpose2d(input, weight, self.bias, self.stride, self.padding, self.output_padding, self.groups, self.dilation)
 
 
 class ScaledStdConv2d(nn.Conv2d):
