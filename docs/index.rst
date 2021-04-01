@@ -6,7 +6,8 @@
 Welcome to NFNets PyTorch's documentation!
 ==========================================
 NFNets-PyTorch is an implementation of the paper: "High-Performance Large-Scale Image Recognition Without Normalization
-". Original paper can be found at arxiv_. You can find other implementations at PapersWithCode_.
+". Original paper can be found at arxiv_. You can find other implementations at PapersWithCode_. If you're looking for an explanation,
+look at this blogpost_.
 
 .. toctree::
    :maxdepth: 2
@@ -15,6 +16,8 @@ NFNets-PyTorch is an implementation of the paper: "High-Performance Large-Scale 
 .. _arxiv: https://arxiv.org/abs/2102.06171v1.pdf
 
 .. _PapersWithCode: https://paperswithcode.com/paper/high-performance-large-scale-image
+
+.. _blogpost: https://tourdeml.github.io/blog/posts/2021-03-31-adaptive-gradient-clipping/
 
 *********
 Install
@@ -39,12 +42,12 @@ Sample usage
 
    import torch
    from torch import nn
-   from torchvision.models import resnet18
+   from torchvision.models import vgg16
 
    from nfnets import replace_conv, AGC, WSConv2d, ScaledStdConv2d
 
-   model = resnet18()
-   replace_conv(model, ScaledStdConv2d) # Original repo's implementation
+   model = vgg16()
+   replace_conv(model, WSConv2d) # Original repo's implementation
    replace_conv(model, ScaledStdConv2d) # timm
    optim = torch.optim.SGD(model.parameters(), 1e-3) # Or any of your favourite optimizer
    optim = AGC(model.parameters(), optim)
