@@ -50,6 +50,9 @@ class AGC(optim.Optimizer):
         self.agc_params = params
         self.eps = eps
         self.clipping = clipping
+        
+        self.param_groups = optim.param_groups
+        self.state = optim.state
 
         #super(AGC, self).__init__([], defaults)
 
