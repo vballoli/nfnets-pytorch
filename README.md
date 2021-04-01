@@ -7,9 +7,9 @@ Paper: https://arxiv.org/abs/2102.06171.pdf
 
 Original code: https://github.com/deepmind/deepmind-research/tree/master/nfnets
 
-Do star this repository if it helps your work, and [don't forget to cite](https://github.com/vballoli/nfnets-pytorch#cite-this-repository) if you use this code in your research!
+Blog post: https://tourdeml.github.io/blog/posts/2021-03-31-adaptive-gradient-clipping/. Feel free to subscribe to the newsletter, and leave a comment if you have anything to add/suggest publicly.
 
-> Disclaimer: This technique only works with large datasets(as mentioned in the paper).
+Do star this repository if it helps your work, and [don't forget to cite](https://github.com/vballoli/nfnets-pytorch#cite-this-repository) if you use this code in your research!
 
 # Installation
 
@@ -121,12 +121,3 @@ To cite this repository, use:
   howpublished = {\url{https://github.com/vballoli/nfnets-pytorch}}
 }
 ```
-
-# TODO
-- [x] WSConv2d
-- [x] SGD - Adaptive Gradient Clipping
-- [x] Function to automatically replace Convolutions in any module with WSConv2d
-- [x] Documentation
-- [x] Generic AGC wrapper.(See [this comment](https://github.com/vballoli/nfnets-pytorch/issues/1#issuecomment-778853439) for a reference implementation) (Needs testing for now)
-- [x] WSConvTranspose2d
-- [x] WSConv1d(Thanks to [@shi27feng](https://github.com/shi27feng))
