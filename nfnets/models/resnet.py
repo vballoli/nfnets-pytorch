@@ -30,6 +30,8 @@ _nonlin_gamma = dict(
     tanh=1.5939117670059204,
 )
 
+ignore_inplace = ['gelu', 'silu', 'softplus', ]
+
 activation_fn = {
     'relu': lambda x, *args, **kwargs: nn.Identity(*args, **kwargs)(x) * _nonlin_gamma['identity'],
     'celu': lambda x, *args, **kwargs: nn.CELU(*args, **kwargs)(x) * _nonlin_gamma['celu'],
@@ -86,8 +88,11 @@ class BasicBlock(nn.Module):
         # Both self.conv1 and self.downsample layers downsample the input when stride != 1
         self.conv1 = conv3x3(inplanes, planes, stride, base_conv=base_conv)
         self.activation = activation
-        print("Action: ", activation)
-        self.act = partial(activation_fn[activation], inplace=True)
+        
+        if activation not in ignore_inplace:
+            self.act = partial(activation_fn[activation], inplace=True)
+        else:
+            self.act = partial(activation_fn[activation])
         self.conv2 = conv3x3(planes, planes, base_conv=base_conv)
         self.downsample = downsample
         self.stride = stride
@@ -151,7 +156,10 @@ class Bottleneck(nn.Module):
         self.alpha = alpha
         self.beta = beta
         self.activation = activation
-        self.act = partial(activation_fn[activation], inplace=True)
+        if activation not in ignore_inplace:
+            self.act = partial(activation_fn[activation], inplace=True)
+        else:
+            self.act = partial(activation_fn[activation])
         
 
     def forward(self, x: Tensor) -> Tensor:
@@ -193,6 +201,8 @@ class NFResNet(nn.Module):
         base_conv: nn.Conv2d = ScaledStdConv2d
     ) -> None:
         super(NFResNet, self).__init__()
+        
+        assert activation in activation_fn.keys()
 
         self.inplanes = 64
         self.dilation = 1
