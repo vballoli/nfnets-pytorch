@@ -33,7 +33,7 @@ _nonlin_gamma = dict(
 ignore_inplace = ['gelu', 'silu', 'softplus', ]
 
 activation_fn = {
-    'relu': lambda x, *args, **kwargs: nn.Identity(*args, **kwargs)(x) * _nonlin_gamma['identity'],
+    'identity': lambda x, *args, **kwargs: nn.Identity(*args, **kwargs)(x) * _nonlin_gamma['identity'],
     'celu': lambda x, *args, **kwargs: nn.CELU(*args, **kwargs)(x) * _nonlin_gamma['celu'],
     'elu': lambda x, *args, **kwargs: nn.ELU(*args, **kwargs)(x) * _nonlin_gamma['elu'],
     'gelu': lambda x, *args, **kwargs: nn.GELU(*args, **kwargs)(x) * _nonlin_gamma['gelu'],
@@ -139,7 +139,7 @@ class Bottleneck(nn.Module):
         alpha: float = 0.2,
         beta: float = 1.0,
         activation: str = 'relu',
-        base_conv: int = ScaledStdConv2d,
+        base_conv: nn.Conv2d = ScaledStdConv2d,
     ) -> None:
         super(Bottleneck, self).__init__()
         width = int(planes * (base_width / 64.)) * groups
