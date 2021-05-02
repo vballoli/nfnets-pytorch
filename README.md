@@ -73,9 +73,9 @@ optim = optim.SGD(conv.parameters(), 1e-3)
 optim_agc = SGD_AGC(conv.parameters(), 1e-3)
 ```
 
-## Using it within any PyTorch model (with non-residual connections)
+## Using it within any non-residual PyTorch model (with non-residual connections)
 
-`replace_conv` replaces the convolution in your model with the convolution class and replaces the batchnorm with identity. While the identity is not ideal, it shouldn't cause a major difference in the latency. 
+`replace_conv` replaces the convolution in your (non-residual) model with the convolution class and replaces the batchnorm with identity. While the identity is not ideal, it shouldn't cause a major difference in the latency. 
 
 > Note that as per the paper, replace_conv is only valid for non-residual models(vgg, mobilenetv1, etc.). See the above mentioned blog post for more information regarding the details.
 
