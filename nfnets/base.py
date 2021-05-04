@@ -269,7 +269,7 @@ class WSConv2d(nn.Conv2d):
     def standardize_weight(self, eps):
         mean = torch.mean(self.weight, dim=(1, 2, 3), keepdims=True)
         var = torch.std(self.weight, dim=(1, 2, 3), keepdims=True) ** 2
-        fan_in = torch.prod(torch.tensor(self.weight.shape[0:]))
+        fan_in = torch.prod(torch.tensor(self.weight.shape[1:]))
 
         scale = torch.rsqrt(torch.max(
             var * fan_in, torch.tensor(eps).to(var.device))) * self.gain.view_as(var).to(var.device)
@@ -434,7 +434,7 @@ class WSConvTranspose2d(nn.ConvTranspose2d):
     def standardize_weight(self, eps):
         mean = torch.mean(self.weight, dim=(1, 2, 3), keepdims=True)
         var = torch.std(self.weight, dim=(1, 2, 3), keepdims=True) ** 2
-        fan_in = torch.prod(torch.tensor(self.weight.shape[0:]))
+        fan_in = torch.prod(torch.tensor(self.weight.shape[1:]))
 
         scale = torch.rsqrt(torch.max(
             var * fan_in, torch.tensor(eps).to(var.device))) * self.gain.view_as(var).to(var.device)
