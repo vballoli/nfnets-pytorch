@@ -1,7 +1,8 @@
 # PyTorch implementation of Normalizer-Free Networks and Adaptive Gradient Clipping
 ![Python Package](https://github.com/vballoli/nfnets-pytorch/workflows/Upload%20Python%20Package/badge.svg)
-![Docs](https://readthedocs.org/projects/nfnets-pytorch/badge/?version=latest
-)
+![Docs](https://readthedocs.org/projects/nfnets-pytorch/badge/?version=latest)
+[![Papers using ma-gym](https://img.shields.io/badge/-Papers%20using%20nfnets--pytorch-blue?style=flat&logo=googlescholar)](https://scholar.google.com/scholar?hl=en&as_sdt=0%2C5&q=nfnets-pytorch&btnG=)
+
 
 Paper: https://arxiv.org/abs/2102.06171.pdf
 
