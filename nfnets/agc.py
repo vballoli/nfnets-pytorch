@@ -2,7 +2,10 @@ import torch
 from torch import nn, optim
 
 from nfnets.utils import unitwise_norm
-from collections import Iterable
+try:
+    from collections import Iterable
+except ImportError:
+    from collections.abc import Iterable
 
 
 class AGC(optim.Optimizer):
@@ -43,14 +46,14 @@ class AGC(optim.Optimizer):
                         "Module name {} not found in the model".format(module_name))
             params = [{"params": list(module.parameters())} for name,
                           module in model.named_modules() if name not in ignore_agc]
-        
+
         else:
             params = [{"params": params}]
 
         self.agc_params = params
         self.eps = eps
         self.clipping = clipping
-        
+
         self.param_groups = optim.param_groups
         self.state = optim.state
 
