@@ -2,7 +2,7 @@ import torch
 from torch import nn, optim
 
 from nfnets.utils import unitwise_norm
-from collections import Iterable
+from collections.abc import Iterable
 
 
 class AGC(optim.Optimizer):
